@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 
-<form>
+<form action="index.jsp" method="post">
   <div class="input-group">
     <span class="input-group-text">First and last name</span>
     <input type="text" aria-label="First name" class="form-control" name="fname">
@@ -37,4 +37,5 @@ pageEncoding="UTF-8"%>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
+  
 </form>

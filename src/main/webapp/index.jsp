@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<%@page import="java.util.Date" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -75,6 +77,37 @@ pageEncoding="UTF-8"%>
     </nav>
 
     <div id="main"></div>
+    
+      
+  <%
+    	String fname = request.getParameter("fname");
+    	String lname = request.getParameter("lname");
+    	String mob = request.getParameter("mob");
+    	String email = request.getParameter("email");
+    	String uid = request.getParameter("uid");
+    	String pass = request.getParameter("pass");
+    	if(fname!=null && lname!=null && mob!=null && email!=null && uid!=null && pass!=null){
+    		Connection con = null;
+    		PreparedStatement pstmt = null;
+  	    	try{
+  	    		Class.forName("com.mysql.cj.jdbc.Driver");
+  	    		con = DriverManager.getConnection("jdbc:mysql://localhost:3306?user=root&password=Dishant@2002");
+  	    		pstmt = con.prepareStatement("insert into carwalep.resister(FNAME,LNAME,CONTACT_NO,EMAIL_ADD,ID,PASSWORD,DATE_TIME) values(?,?,?,?,?,?,?)");
+  	    		pstmt.setString(1,fname);
+  	    		pstmt.setString(2,lname);
+  	    		pstmt.setString(3,mob);
+  	    		pstmt.setString(4,email);
+  	    		pstmt.setString(5,uid);
+  	    		pstmt.setString(6,pass);
+  	    		pstmt.setString(7,String.valueOf(new Date()));
+  	    		
+  	    		pstmt.execute();
+  	    	}
+  	    	catch(Exception e){
+  	    		e.printStackTrace();
+  	    	}
+    	}
+    %>
     
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
